@@ -59,9 +59,12 @@ class HashTable {
       return;
     }
 
-    while (currentNode) {
-      if (currentNode.next.value === value)
+    while (currentNode.next) {
+      if (currentNode.next.value === value) {
         currentNode.next = currentNode.next.next;
+        break;
+      }
+
       currentNode = currentNode.next;
     }
   }
