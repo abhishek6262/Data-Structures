@@ -48,6 +48,23 @@ class HashTable {
 
     return false;
   }
+
+  remove(value) {
+    const index = this.#generateHash(value);
+    if (!this.#items[index]) return false;
+
+    let currentNode = this.#items[index];
+    if (currentNode.value === value) {
+      this.#items[index] = currentNode.next;
+      return;
+    }
+
+    while (currentNode) {
+      if (currentNode.next.value === value)
+        currentNode.next = currentNode.next.next;
+      currentNode = currentNode.next;
+    }
+  }
 }
 
 const hashTable = new HashTable();
@@ -57,7 +74,9 @@ hashTable.insert("prakash");
 hashTable.insert("shade");
 hashTable.insert(2);
 hashTable.insert(3);
+hashTable.insert(10);
 hashTable.insert(4);
+hashTable.remove(10);
 hashTable.insert(5);
 
 console.log(hashTable.has(3));
