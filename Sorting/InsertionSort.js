@@ -10,7 +10,6 @@ function insertionSort(nums) {
         nums[j + 1] = num;
     }
 
-
     return nums;
 }
 
