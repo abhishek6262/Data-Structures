@@ -22,7 +22,9 @@ function quickSort(items, low, high) {
     quickSort(items, low, p - 1);
     quickSort(items, p + 1, high);
   }
+
+  return items;
 }
 
-quickSort(nums, 0, nums.length - 1);
-console.log(nums);
+const items = quickSort(nums, 0, nums.length - 1);
+console.log(items);
