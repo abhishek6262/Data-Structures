@@ -1,16 +1,11 @@
 let nums = [1, 88, 9, 55, 65, 8, 5, 2, 12, 64, 73];
 
-function partition(items, index) {
-  [items[index], items[items.length - 1]] = [
-    items[items.length - 1],
-    items[index],
-  ];
+function partition(items, low, high) {
+  let i = low,
+    j = low - 1;
 
-  let i = 0,
-    j = -1;
-
-  for (; i < items.length - 1; i++) {
-    if (items[i] < items[items.length - 1]) {
+  for (; i < high; i++) {
+    if (items[i] <= items[high]) {
       [items[i], items[j + 1]] = [items[j + 1], items[i]];
       j++;
     }
@@ -18,7 +13,16 @@ function partition(items, index) {
 
   [items[i], items[j + 1]] = [items[j + 1], items[i]];
 
-  return items;
+  return j + 1;
 }
 
-console.log(partition(nums, 3));
+function quickSort(items, low, high) {
+  if (low < high) {
+    const p = partition(items, low, high);
+    quickSort(items, low, p - 1);
+    quickSort(items, p + 1, high);
+  }
+}
+
+quickSort(nums, 0, nums.length - 1);
+console.log(nums);
